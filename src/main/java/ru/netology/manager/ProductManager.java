@@ -34,32 +34,11 @@ public class ProductManager {
         Product[] temp = new Product[allProducts.length];
         int i = 0;
         for (Product item : allProducts) {
-            if(matches(item, text)) {
+            if(item.matches(text)) {
                 temp[i] = item;
                 i++;
             }
         }
         return Arrays.copyOfRange(temp, 0, i);
-    }
-
-    public boolean matches(Product product, String search) {
-        if (product.getName().contains(search)) {
-            return true;
-        }
-        if(product instanceof Book) {
-            Book book = (Book) product;
-            if (book.getAuthor().equalsIgnoreCase(search)) {
-                return true;
-            }
-        }
-
-        if(product instanceof Smartphone) {
-            Smartphone smartphone = (Smartphone) product;
-            if (smartphone.getManufacturer().equalsIgnoreCase(search)) {
-                return true;
-            }
-        }
-
-        return false;
     }
 }
