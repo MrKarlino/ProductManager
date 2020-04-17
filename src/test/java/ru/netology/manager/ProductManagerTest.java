@@ -18,9 +18,9 @@ class ProductManagerTest {
 
     @BeforeEach
     void setUp() {
-    repository = new ProductRepository();
-    repository.save(product);
-    manager = new ProductManager(repository);
+        repository = new ProductRepository();
+        repository.save(product);
+        manager = new ProductManager(repository);
     }
 
     @Test
@@ -32,19 +32,39 @@ class ProductManagerTest {
     }
 
     @Test
-    void testSearchBy () {
+    void testSearchBy() {
         String testName = product.getName();
         Product[] actual = manager.searhBy(testName);
         Product[] expected = {product};
         assertArrayEquals(expected, actual);
     }
 
-        @Test
+    @Test
     void testSave() {
         Product product1 = new Product(2, "Ужастики");
         manager.save(product1);
         int actual = repository.findAll().length;
         int expected = 2;
         assertEquals(expected, actual);
+    }
+
+    @Test
+    void testFindBookAuthor() {
+        Book testBook = new Book(3, "Драма", "Иванов");
+        manager.save(testBook);
+        String testName = testBook.getAuthor();
+        Product[] actual = manager.searhBy(testName);
+        Product[] expected = {testBook};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void testFindSmartphoneManufacturer() {
+        Smartphone testPhone = new Smartphone(4, "Нокиа", "Nokia");
+        manager.save(testPhone);
+        String testManufacturer = testPhone.getManufacturer();
+        Product[] actual = manager.searhBy(testManufacturer);
+        Product[] expected = {testPhone};
+        assertArrayEquals(expected, actual);
     }
 }

@@ -1,5 +1,13 @@
 package ru.netology.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+
 public class Book extends Product {
     private String author;
 
@@ -16,9 +24,10 @@ public class Book extends Product {
         this.author = author;
     }
 
+
     @Override
     public boolean matches(String search) {
-        if(super.matches(search)){
+        if (super.matches(search)) {
             return true;
         }
         return getAuthor().equalsIgnoreCase(search);

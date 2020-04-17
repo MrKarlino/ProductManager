@@ -22,7 +22,7 @@ class ProductRepositoryTest {
 
     @Test
     void testFindAll() {
-        Product [] actual = repository.findAll();
+        Product[] actual = repository.findAll();
         assertArrayEquals(products, actual);
     }
 
